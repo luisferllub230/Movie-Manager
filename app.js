@@ -11,7 +11,11 @@ const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, './src/Public')));
 
 // Configure handlebars
-app.engine("hbs", expressHbs());
+app.engine("hbs", expressHbs({
+    layoutDir: "/src/Views/layouts/",
+    defaultLayout: "main-layout",
+    extname: "hbs"
+}));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./src/Views"));
 
@@ -22,7 +26,6 @@ app.use("/", (req, res, next) => { //no found page
     res.status(404).render("404",{
       title: "404",
       message: "Page not found",
-      layout: false
     });
 });
 

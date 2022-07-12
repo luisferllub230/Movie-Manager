@@ -8,7 +8,6 @@ rout.use("/",(req, res, next) => {
     res.render("index",{
         title: "Home",
         message: "Welcome to the home page",
-        layout: false
     });
 });
 
