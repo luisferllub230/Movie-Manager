@@ -3,6 +3,7 @@ import path from "path";
 import expressHbs from "express-handlebars";
 import usersRout from "./src/Routes/users.js";
 import adminRout from "./src/Routes/admin.js";
+import errorRout from "./src/Routes/error.js";
 
 // Initialize express app
 const app = express();
@@ -23,13 +24,7 @@ app.set("views", path.join(__dirname, "./src/Views"));
 //call the middleware
 app.use('/user/',usersRout);
 app.use('/admin/',adminRout);
-
-app.use("/", (req, res, next) => { //no found page
-    res.status(404).render("404",{
-      title: "404",
-      message: "Page not found",
-    });
-});
+app.use("/", errorRout);  //bug, it's not working good
 
 // Configure routes
 app.listen(process.env.port || 5500);
