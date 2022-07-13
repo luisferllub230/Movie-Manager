@@ -37,9 +37,9 @@ class movieClass{
     }
 
     //get the movie from the file
-   static getMovie(callback){
-    getAllMovie(movies=>{
-        callback(movies)
+    static getMovie(callback){
+        getAllMovie(movies=>{
+            callback(movies)
 })};
 }
 
