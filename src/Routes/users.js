@@ -1,11 +1,11 @@
-import express from "express";
-import * as userController from "../Controllers/userController.js";
+const express = require("express");
+const userController = require("../Controllers/userController");
 
 //initialize router
-const rout = express.Router();
+const UserRout = express.Router();
 
 //middleware
-rout.get("/genre", userController.GetGenre);
-rout.get("/", userController.GetHome);
+UserRout.get("/genre", userController.GetGenre);
+UserRout.get("/", userController.GetHome);
 
-export default rout;
+module.exports = UserRout;

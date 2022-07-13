@@ -1,20 +1,20 @@
-import express from "express";
-import path from "path";
-import expressHbs from "express-handlebars";
-import usersRout from "./src/Routes/users.js";
-import adminRout from "./src/Routes/admin.js";
-import errorRout from "./src/Routes/error.js";
-import bodyParser from "body-parser";
+const express = require("express");
+const path = require("path");
+const expressHbs = require("express-handlebars");
+const usersRout = require("./src/Routes/users");
+const adminRout = require("./src/Routes/admin");
+const errorRout = require("./src/Routes/error");
+const bodyParser = require("body-parser");
 
 // Initialize express app
 const app = express();
 
-app.use(bodyParser.json());
+//initialize body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //make the static folder public
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, './src/Public')));
+app.use(express.static(path.join(__dirname, "./src/public")));
 
 // Configure handlebars
 app.engine("hbs", expressHbs({
@@ -28,7 +28,7 @@ app.set("views", path.join(__dirname, "./src/Views"));
 //call the middleware
 app.use('/user/',usersRout);
 app.use('/admin/',adminRout);
-app.use("/", errorRout);
+app.use("/",errorRout);
 
 // Configure routes
 app.listen(process.env.port || 5500);

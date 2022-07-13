@@ -1,10 +1,11 @@
-import express from "express";
-import * as errorController from "../Controllers/errorController.js";
+const express = require("express");
+const errorController = require("../Controllers/errorController");
+
 
 //Initialize router
-const rout = express.Router();
+const errorRout = express.Router();
 
 //middleware
-rout.use("/", errorController.GetError404);
+// errorRout.use("/", errorController.GetError);
 
-export default rout;
+module.exports = errorRout;

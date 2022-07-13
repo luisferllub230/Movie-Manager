@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 //get the path of the file
-const __dirname = path.resolve();
-const dataPath = path.join(__dirname,'./src/Data/movies.json');
+const dataPath = path.join(path.dirname(require.main.filename), './src/Data', 'movies.json');
 
 // Read the file and return the data
 const getAllMovie = callback =>{
@@ -16,7 +15,7 @@ const getAllMovie = callback =>{
     });
 } 
 
-class movieClass{
+module.exports = class movieClass{
     constructor(id,title,genre,urlImage,description){
         this.id = id;
         this.title = title;
@@ -56,5 +55,3 @@ class movieClass{
             callback(movies)
 })};
 }
-
-export {movieClass};

@@ -1,12 +1,12 @@
-import express from "express";
-import * as adminController from "../Controllers/adminController.js";
+const express = require("express");
+const adminController = require("../Controllers/adminController");
 
 //initialize router
-const rout = express.Router();
+const adminRout = express.Router();
 
 //middleware
-rout.post("/addMovie", adminController.PostAddMovie);
-rout.get("/addMovie", adminController.GetAddMovie);
-rout.get("/", adminController.PosEdit);
+adminRout.post("/addMovie", adminController.PostAddMovie);
+adminRout.get("/addMovie", adminController.GetAddMovie);
+adminRout.get("/edit/:edit", adminController.PosEdit);
 
-export default rout;
+module.exports = adminRout;

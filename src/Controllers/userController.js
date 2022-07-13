@@ -1,6 +1,6 @@
-import * as movieModel from "../Models/testData.js";
+const movieModel = require("../Models/testData");
 
-const GetGenre = (req, res, next) => {
+exports.GetGenre = (req, res, next) => {
     res.render("./user/genre",{
         title: "Genre",
         message: "Welcome to genre page",
@@ -8,8 +8,8 @@ const GetGenre = (req, res, next) => {
     });
 }
 
-const GetHome = (req, res, next) => {
-    movieModel.movieClass.getMovie(movie =>{
+exports.GetHome = (req, res, next) => {
+    movieModel.getMovie(movie =>{
         res.render("./user/index",{
             title: "Home",
             movies: movie,
@@ -18,6 +18,3 @@ const GetHome = (req, res, next) => {
         });
     });
 }
-
-
-export {GetHome, GetGenre};
