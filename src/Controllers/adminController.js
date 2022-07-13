@@ -11,19 +11,15 @@ const GetAddMovie = (req, res, next) => {
 
 const PostAddMovie = (req, res, next) => {
 
-    console.log(req.body);
     const title = req.body.title;
     const genre = req.body.genre;
     const urlImage = req.body.urlImage;
     const description = req.body.description;
 
-    
-
-     
     const movie = new movieModel.movieClass(title, genre, urlImage, description);
     movie.saveMovie();  
 
-    res.status(200).redirect("/");
+    res.status(200).redirect("/admin/addMovie");//error in the redirect went the json file is not created 
 }
 
 export {GetAddMovie, PostAddMovie};

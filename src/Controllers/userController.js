@@ -17,9 +17,7 @@ const GetHome = (req, res, next) => {
             title: "Home",
             movies: movie,
             message: "Welcome to the home page",
-            activeHome: true,
         });
-        console.log(movie);
     });
 }
 
