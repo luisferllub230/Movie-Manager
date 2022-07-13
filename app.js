@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "./src/Views"));
 //call the middleware
 app.use('/user/',usersRout);
 app.use('/admin/',adminRout);
-app.use("/", errorRout);  //bug, it's not working good
+app.use("/", errorRout);
 
 // Configure routes
 app.listen(process.env.port || 5500);
