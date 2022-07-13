@@ -7,5 +7,6 @@ const rout = express.Router();
 //middleware
 rout.post("/addMovie", adminController.PostAddMovie);
 rout.get("/addMovie", adminController.GetAddMovie);
+rout.get("/", adminController.PosEdit);
 
 export default rout;

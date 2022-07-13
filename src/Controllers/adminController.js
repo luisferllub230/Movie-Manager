@@ -1,5 +1,6 @@
 import * as movieModel from "../Models/testData.js";
 
+//add movie to the database
 const GetAddMovie = (req, res, next) => {
     res.render("./admin/addMovie",{
         title: "Genre",
@@ -8,7 +9,6 @@ const GetAddMovie = (req, res, next) => {
     });
 }
 
-
 const PostAddMovie = (req, res, next) => {
 
     const title = req.body.title;
@@ -16,10 +16,19 @@ const PostAddMovie = (req, res, next) => {
     const urlImage = req.body.urlImage;
     const description = req.body.description;
 
-    const movie = new movieModel.movieClass(title, genre, urlImage, description);
+    const movie = new movieModel.movieClass(null,title, genre, urlImage, description);
     movie.saveMovie();  
 
-    res.status(200).redirect("/admin/addMovie");//error in the redirect went the json file is not created 
+    res.status(200).redirect("/user/");//error in the redirect went the json file is not created 
 }
 
-export {GetAddMovie, PostAddMovie};
+//edit movie
+const PosEdit = (req, res, next) => {
+    res.render("./admin/edit",{
+        title: "Edit Movie",
+        activeEdit: true,
+    });
+}
+
+
+export {GetAddMovie, PostAddMovie, PosEdit};

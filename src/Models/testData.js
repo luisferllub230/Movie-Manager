@@ -17,7 +17,8 @@ const getAllMovie = callback =>{
 } 
 
 class movieClass{
-    constructor(title,genre,urlImage,description){
+    constructor(id,title,genre,urlImage,description){
+        this.id = id;
         this.title = title;
         this.genre = genre;
         this.urlImage = urlImage;
@@ -27,12 +28,25 @@ class movieClass{
     //save the movie in the file
     saveMovie(){
         getAllMovie(movies=>{
-            movies.push(this);
-            fs.writeFile(dataPath, JSON.stringify(movies), err => {
-                if(err){
-                    console.log(err);
-                }
-            });
+
+            if(this.id){
+                const idMovies = movies.map(movie=>movie.id === this.id);
+
+                movies[idMovies] = this;//update the movie
+                fs.writeFile(dataPath, JSON.stringify(movies), err => {
+                    if(err){
+                        console.log(err);
+                    }
+                });
+            }else{
+                this.id = Math.random().toString();
+                movies.push(this);
+                fs.writeFile(dataPath, JSON.stringify(movies), err => {
+                    if(err){
+                        console.log(err);
+                    }
+                });
+            }
         });
     }
 
