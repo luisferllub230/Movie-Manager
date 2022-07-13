@@ -1,3 +1,7 @@
+import * as movieModel from "../Models/testData.js";
+
+
+
 const GetGenre = (req, res, next) => {
     res.render("genre",{
         title: "Genre",
@@ -7,10 +11,13 @@ const GetGenre = (req, res, next) => {
 }
 
 const GetHome = (req, res, next) => {
-    res.render("index",{
-        title: "Home",
-        message: "Welcome to the home page",
-        activeHome: true,
+    movieModel.movieClass.getMovie(movie =>{
+        res.render("index",{
+            title: "Home",
+            movies: movie,
+            message: "Welcome to the home page",
+            activeHome: true,
+        });
     });
 }
 
