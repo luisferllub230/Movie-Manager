@@ -10,17 +10,15 @@ const getAllMovie = callback =>{
     fs.readFile(dataPath, (err, data) => {
         if(err){
             callback([]);
-            console.log(err);
         }else{
             callback(JSON.parse(data));
         }
     });
 } 
 
-const movieClass = new class {
-    constructor(title,name,genre,urlImage,description){
+class movieClass{
+    constructor(title,genre,urlImage,description){
         this.title = title;
-        this.name = name;
         this.genre = genre;
         this.urlImage = urlImage;
         this.description = description;
@@ -39,7 +37,10 @@ const movieClass = new class {
     }
 
     //get the movie from the file
-    getMovie(callback){ getAllMovie(movies=>callback(movies)) };
+   static getMovie(callback){
+    getAllMovie(movies=>{
+        callback(movies)
+})};
 }
 
 export {movieClass};

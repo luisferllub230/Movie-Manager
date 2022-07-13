@@ -5,8 +5,8 @@ import * as userController from "../Controllers/userController.js";
 const rout = express.Router();
 
 //middleware
-rout.use("/genre", userController.GetGenre);
-
-rout.use("/", userController.GetHome);
+rout.get("/genre", userController.GetGenre);
+rout.get("/", userController.GetHome);
+rout.post("/", userController.PostHome);
 
 export default rout;
