@@ -3,7 +3,6 @@ const path = require("path");
 const expressHbs = require("express-handlebars");
 const usersRout = require("./Routes/users");
 const adminRout = require("./Routes/admin");
-const errorRout = require("./Routes/error");
 const bodyParser = require("body-parser");
 
 // Initialize express app
@@ -28,7 +27,13 @@ app.set("views", path.join(__dirname, "Views"));
 //call the middleware
 app.use('/user/',usersRout);
 app.use('/admin/',adminRout);
-app.use("/",errorRout);
+app.use("/", (req, res, next) => {
+    res.status(404).render("./error/404",{
+      title: "404",
+      message: "Page not found - 404",
+    });
+}
+);
 
 // Configure routes
 app.listen(process.env.port || 5500);

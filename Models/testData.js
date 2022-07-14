@@ -57,7 +57,7 @@ module.exports = class movieClass{
 
     //get by id
     static getMovieById(id, callback){
-        getAllMovie(movies=>{
+        getAllMovie((movies)=>{
             const movie = movies.find(m => m.id === id);
             callback(movie);
         }
