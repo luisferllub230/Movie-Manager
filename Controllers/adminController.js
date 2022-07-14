@@ -2,7 +2,7 @@ const movieModel = require("../Models/testData");
 
 //add movie to the database
 exports.GetAddMovie = (req, res, next) => {
-    res.render("./admin/addMovie",{
+    res.render("./admin/administration",{
         title: "Genre",
         message: "Welcome to genre page",
         activeAddMovie: true,
@@ -30,7 +30,7 @@ exports.GetEdit = (req, res, next) => {
     }
 
     movieModel.getMovieById(1, movies=>{
-        res.render("./admin/addMovie",{
+        res.render("./admin/administration",{
             title: "Edit Movie",
             activeEdit: true,
             editMode: edit,

@@ -1,0 +1,34 @@
+
+<div class="card mt-3">
+    <form action="{{#if editMode}}/admin/edit{{else}}/admin/addMovie{{/if}}" method="post">
+
+        <div class="row m-3">
+            <label for="title" class="">title: 
+                <input type="text" name="title" id="title" placeholder="Title" value="{{#if editMode}}{{movies.title}}{{/if}}" class="col-12">
+            </label>
+        </div>
+
+        <div class="row m-3">
+            <label for="genre">Genre:
+                <input type="text" name="genre" id="genre" placeholder="genre" value="{{#if editMode}}{{movies.genre}}{{/if}}" class="col-12">
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="urlImag" >URL:
+                <input type="text" name="urlImage" id="urlImag" placeholder="url of your img" value="{{#if editMode}}{{movies.urlImage}}{{/if}}" class="col-12">
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="description">Description:
+                <input type="text" name="description" id="description" placeholder="Synopsis" value="{{#if editMode}}{{movies.description}}{{/if}}" class="col-12">
+            </label>
+        </div>
+        {{#if editMode}}
+            <input type="hidden" name="id" value="{{id}}">
+        {{/if}}
+
+        <div class="m-2">
+            <input class="btn btn-info"type="submit" value="{{#if editMode}} edit {{else}} add {{/if}}">
+        </div>
+    </form>
+</div>
