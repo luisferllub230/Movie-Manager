@@ -4,25 +4,47 @@
 
         <div class="row m-3">
             <label for="title" class="">title: 
-                <input type="text" name="title" id="title" placeholder="Title" value="{{#if editMode}}{{movies.title}}{{/if}}" class="col-12">
+                <input type="text" name="title" id="title" placeholder="Title" value="{{#if editMode}}{{movies.title}}{{/if}}" class="col-12" required>
             </label>
         </div>
-
         <div class="row m-3">
             <label for="genre">Genre:
-                <input type="text" name="genre" id="genre" placeholder="genre" value="{{#if editMode}}{{movies.genre}}{{/if}}" class="col-12">
+                <select class="form-select" aria-label="Default select example" name="genre">
+                    <option selected>Open this select menu</option> 
+                    {{#each genreMovie as |g key|}}
+                    <option value="{{key}}">{{g}}</option>
+                    {{/each}}
+                </select required>
             </label>
         </div>
         <div class="row m-3">
             <label for="urlImag" >URL:
-                <input type="text" name="urlImage" id="urlImag" placeholder="url of your img" value="{{#if editMode}}{{movies.urlImage}}{{/if}}" class="col-12">
+                <input type="text" name="urlImage" id="urlImag" placeholder="url of your img" value="{{#if editMode}}{{movies.urlImage}}{{/if}}" class="col-12" required>
             </label>
         </div>
         <div class="row m-3">
             <label for="description">Description:
-                <input type="text" name="description" id="description" placeholder="Synopsis" value="{{#if editMode}}{{movies.description}}{{/if}}" class="col-12">
+                <input type="text" name="description" id="description" placeholder="Synopsis" value="{{#if editMode}}{{movies.description}}{{/if}}" class="col-12" required>
             </label>
         </div>
+
+        <div class="row m-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio" id="active" value="true" checked>
+                <label class="form-check-label" for="active">
+                    active
+                </label>
+                </div>
+                {{#if editMode}}
+                    <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="disabled" value="false" required>
+                    <label class="form-check-label" for="disabled">
+                        disabled
+                    </label>
+                {{/if}}
+            </div>
+        </div>
+
         {{#if editMode}}
             <input type="hidden" name="id" value="{{id}}">
         {{/if}}

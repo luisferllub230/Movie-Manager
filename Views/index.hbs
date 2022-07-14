@@ -4,19 +4,18 @@
 </div>
 
 <div class="row ">
-    {{#each movies as |i key|}} 
+    {{#each list as |i key|}} 
         <div class="col-12 col-md-6 col-lg-4">
             <div class=" card box bg-white text-dark box-size">
                 <img src="{{i.urlImage}}" class="card-img-top" alt="{{i.description}}">
                 <div class="card-img-overlay img-fluid">
                     <h5 class="card-title">{{i.title}}</h5>
-                    {{#if i.id}} 
-                    <a href="/admin/edit/:{{i.id}}?edit=true" class="btn btn-info">edit</a> 
-                    {{/if}}
                 </div>
             </div>
+            {{#if checked}}
+            <p class="btn btn-danger">Active</p>
+            {{/if}}
         </div>
-
     {{/each}}
 </div>
 

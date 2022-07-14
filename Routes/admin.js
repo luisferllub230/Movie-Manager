@@ -8,6 +8,7 @@ const adminRout = express.Router();
 adminRout.post("/addMovie", adminController.PostAddMovie);
 adminRout.get("/addMovie", adminController.GetAddMovie);
 adminRout.post("/edit", adminController.PosEdit);
-adminRout.get("/edit/:edit", adminController.GetEdit);
+adminRout.get("/edit", adminController.GetEdit);
+adminRout.get("/", adminController.GetHome);
 
 module.exports = adminRout;
