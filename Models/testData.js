@@ -16,3 +16,10 @@ module.exports.readJSONFile = () => {
 module.exports.saveJSONFile = (data) => {
     fs.writeFileSync(dataPath, JSON.stringify(data), 'utf-8');
 }
+
+//delete the movie from the file
+module.exports.deleteJSONFile = (id) => {
+    const container = JSON.parse(data);
+    const newContainer = container.filter(movie => movie.id !== id);
+    module.exports.saveJSONFile(newContainer);
+}

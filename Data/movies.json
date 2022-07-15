@@ -1,18 +1,1 @@
-[
-  {
-    "id": 0,
-    "title": "cars",
-    "genre": "Comedy",
-    "urlImage": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS3_Bu8aJaA_DE7bOSQ7bz3o9Y6whQ7_0PxNnBfGXQ82nE1xVRh",
-    "description": "this is the card",
-    "check": "active"
-  },
-  {
-    "id": 1,
-    "title": "batman",
-    "genre": "Action",
-    "urlImage": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRrmuWJLypZIsZC7yKIMPxxF45UYkJLv5Kg2i5AFcsWuGJnlMPR",
-    "description": "this is the batman",
-    "check": "active"
-  }
-]
+[]

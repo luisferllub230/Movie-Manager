@@ -1,4 +1,5 @@
 const testData = require("../Models/testData");
+const {v4: uuid} = require('uuid');
 
 const genreMovie = ["Action", "Comedy", "Drama", "Horror", "Documentaries", "Suspense"];
 
@@ -22,7 +23,7 @@ exports.PostAddMovie = (req, res, next) => {
     const check = req.body.radio;
 
     let movie = {
-        id:id,
+        id:uuid(),
         title: title,
         genre: genre,
         urlImage: urlImage,
@@ -33,8 +34,6 @@ exports.PostAddMovie = (req, res, next) => {
     testData.saveJSONFile(movieDataContainer);
     res.status(200).redirect("/admin/");
 }
-
-
 
 //edit movie
 exports.GetEdit = (req, res, next) => {
@@ -64,4 +63,10 @@ exports.GetHome = (req, res, next) => {
         movieDataContainer, 
         check: movieDataContainer.check === "active" ? true : false,
     });
+}
+
+//delete movie
+exports.GetDelete = (req, res, next) => { // bug in the redirect don't clean the page
+    testData.deleteJSONFile(req.params.id);
+    res.status(200).redirect("/admin/");
 }
