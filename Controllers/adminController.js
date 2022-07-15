@@ -2,6 +2,8 @@ const testData = require("../Models/testData");
 
 const genreMovie = ["Action", "Comedy", "Drama", "Horror", "Documentaries", "Suspense"];
 
+const movieDataContainer = testData.readJSONFile();
+
 //add movie to the database
 exports.GetAddMovie = (req, res, next) => {
     res.render("./admin/administration",{
@@ -12,13 +14,12 @@ exports.GetAddMovie = (req, res, next) => {
     });
 }
 exports.PostAddMovie = (req, res, next) => {
-    const id = Math.round(Math.random() * 100);
-    console.log(id);
+    const id = Math.round(Math.random());
     const title = req.body.title;
     const genre = req.body.genre;
     const urlImage = req.body.urlImage;
     const description = req.body.description;
-    const check = req.body.checked;
+    const check = req.body.radio;
 
     let movie = {
         id:id,
@@ -28,8 +29,9 @@ exports.PostAddMovie = (req, res, next) => {
         description: description,
         check: check,
     }
-    testData.Data(movie);
-    res.status(200).redirect("/user/");
+    movieDataContainer.push(movie);
+    testData.saveJSONFile(movieDataContainer);
+    res.status(200).redirect("/admin/");
 }
 
 
@@ -50,7 +52,7 @@ exports.PosEdit = (req, res, next) => {
     const description = req.body.description;
     const check = req.body.checked;
 
-    res.status(200).redirect("/user/");
+    res.status(200).redirect("/admin/");
 }
 
 //show all movies
@@ -59,5 +61,7 @@ exports.GetHome = (req, res, next) => {
         title: "Home",
         message: "Welcome to the home page",
         activeHome: true,
+        movieDataContainer, 
+        check: movieDataContainer.check === "active" ? true : false,
     });
 }

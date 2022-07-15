@@ -12,7 +12,7 @@
                 <select class="form-select" aria-label="Default select example" name="genre">
                     <option selected>Open this select menu</option> 
                     {{#each genreMovie as |g key|}}
-                    <option value="{{key}}">{{g}}</option>
+                    <option value="{{g}}">{{g}}</option>
                     {{/each}}
                 </select required>
             </label>
@@ -30,14 +30,14 @@
 
         <div class="row m-3">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio" id="active" value="true" checked>
+                <input class="form-check-input" type="radio" name="radio" id="active" value="active" checked>
                 <label class="form-check-label" for="active">
                     active
                 </label>
                 </div>
                 {{#if editMode}}
                     <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio" id="disabled" value="false" required>
+                    <input class="form-check-input" type="radio" name="radio" id="disabled" value="disable" required>
                     <label class="form-check-label" for="disabled">
                         disabled
                     </label>

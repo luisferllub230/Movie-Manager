@@ -4,7 +4,7 @@
 </div>
 
 <div class="row ">
-    {{#each list as |i key|}} 
+    {{#each movieDataContainer as |i key|}} 
         <div class="col-12 col-md-6 col-lg-4">
             <div class=" card box bg-white text-dark box-size">
                 <img src="{{i.urlImage}}" class="card-img-top" alt="{{i.description}}">
@@ -12,8 +12,8 @@
                     <h5 class="card-title">{{i.title}}</h5>
                 </div>
             </div>
-            {{#if checked}}
-            <p class="btn btn-danger">Active</p>
+            {{#if check}}
+            <p class="bg-warning txt-white">Active</p>
             {{/if}}
         </div>
     {{/each}}

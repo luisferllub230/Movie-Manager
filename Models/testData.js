@@ -4,28 +4,15 @@ const path = require('path');
 //get the path of the file
 const dataPath = path.join(path.dirname(require.main.filename), 'Data', 'movies.json');
 
-// avoid unsubscribing file
-const listMovies = [];
-// const listMovies_JSON = fs.readFileSync(dataPath, 'utf8');
-// const listMoviesExport = JSON.parse(listMovies_JSON);
+//read the file
+const data = fs.readFileSync(dataPath, 'utf-8');
 
-//save the movie in the json file
-// module.exports.Data = (m) => {
+module.exports.readJSONFile = () => {
+    const container = JSON.parse(data);
+    return container;
+}
 
-//     const getData = (lm) => {
-//         listMovies.push(lm);
-//         fs.writeFile(dataPath, JSON.stringify(listMovies), (err) => {
-//             if (err) throw err;!
-//             console.log('The file has been saved');
-//         });
-//     }
-//     getData(m);
-// }
-
-// //show the movies int the user page
-// module.exports.showMovies = (list) => {
-//     const showData = (l) => {
-//         l.push(listMoviesExport); 
-//     }
-//     showData(list);
-// }
+//save the movie to the file
+module.exports.saveJSONFile = (data) => {
+    fs.writeFileSync(dataPath, JSON.stringify(data), 'utf-8');
+}
