@@ -10,7 +10,6 @@ exports.GetAddMovie = (req, res, next) => {
     res.render("./admin/administration",{
         title: "Genre",
         activeAddMovie: true,
-        editMode: false,
         genreMovie: genreMovie,
     });
 }
@@ -37,21 +36,23 @@ exports.PostAddMovie = (req, res, next) => {
 
 //edit movie
 exports.GetEdit = (req, res, next) => {
-    res.render("./admin/administration",{
-        title: "Edit Movie",
-        activeEdit: true,
-        editMode: edit,
-    });
-}
-exports.PosEdit = (req, res, next) => {
-    const id = req.body.id;
-    const title = req.body.title;
-    const genre = req.body.genre;
-    const urlImage = req.body.urlImage;
-    const description = req.body.description;
-    const check = req.body.checked;
+    let id = req.params.id;
+    let edit = req.params.edit;
+    id = id.replace(/:/g, "");
+    edit = edit.replace(/:/g, "");
 
-    res.status(200).redirect("/admin/");
+    const movieData = testData.editTakeDataById(id);
+    console.log(movieData);
+
+    if(edit === true || edit === "true"){
+        res.render("./admin/administration",{
+            title: "Edit Movie",
+            editMode: true,
+            movies: movieData,
+            genreMovie: genreMovie,
+        });
+
+    }else{res.status(200).redirect("/admin/####")}
 }
 
 //show all movies
