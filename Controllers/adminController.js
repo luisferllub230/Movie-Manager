@@ -42,7 +42,6 @@ exports.GetEdit = (req, res, next) => {
     edit = edit.replace(/:/g, "");
 
     const movieData = testData.editTakeDataById(id);
-    console.log(movieData);
 
     if(edit === true || edit === "true"){
         res.render("./admin/administration",{
@@ -53,6 +52,26 @@ exports.GetEdit = (req, res, next) => {
         });
 
     }else{res.status(200).redirect("/admin/####")}
+}
+exports.PostEditMovie = (req, res, next) => {
+    let id = req.body.id;
+    let title = req.body.title;
+    let genre = req.body.genre;
+    let urlImage = req.body.urlImage;
+    let description = req.body.description;
+    let check = req.body.radio;
+
+    let editMovie = {
+        id: id,
+        title: title,
+        genre: genre,
+        urlImage: urlImage,
+        description: description,
+        check: check,
+    }
+
+    testData.editJSONFile(id, editMovie); //bug in the redirect don't clean the page
+    res.redirect("/admin/");
 }
 
 //show all movies

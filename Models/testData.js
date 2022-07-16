@@ -18,11 +18,18 @@ module.exports.editTakeDataById = (id) =>{
     const newContainer = container.filter(movie => movie.id === id);
     return newContainer;
 } 
+module.exports.editJSONFile = (id, newData) => {
+    const container = module.exports.readJSONFile();
+    const newContainer = container.filter(movie => movie.id === id);
+    newContainer[0] = newData;
+    module.exports.saveJSONFile(newContainer);
+}
 
 //save the movie to the file
 module.exports.saveJSONFile = (data) => {
     fs.writeFileSync(dataPath, JSON.stringify(data), 'utf-8');
 }
+
 
 //delete the movie from the file
 module.exports.deleteJSONFile = (id) => {

@@ -3,7 +3,7 @@
 
 {{#each movies as |movies key|}}
 <div class="card mt-3">
-    <form action="/admin/edit" method="post">
+    <form action="/admin/editMovie" method="post">
 
         <div class="row m-3">
             <label for="title" class="">title: 
@@ -13,7 +13,7 @@
         <div class="row m-3">
             <label for="genre">Genre:
                 <select class="form-select" aria-label="Default select example" name="genre">
-                    <option selected>Open this select menu</option> 
+                    <option value="{{movies.genre}}">{{movies.genre}}</option> 
                     {{#each ../genreMovie as |g key|}}
                     <option value="{{g}}">{{g}}</option>
                     {{/each}}
