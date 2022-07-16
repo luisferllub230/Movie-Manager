@@ -1,0 +1,105 @@
+
+{{#if editMode}}
+
+{{#each movies as |movies key|}}
+<div class="card mt-3">
+    <form action="/admin/editMovie" method="post">
+
+        <div class="row m-3">
+            <label for="title" class="">title: 
+                <input type="text" name="title" id="title" placeholder="Title" value="{{movies.title}}" class="col-12" required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="genre">Genre:
+                <select class="form-select" aria-label="Default select example" name="genre">
+                    <option value="{{movies.genre}}">{{movies.genre}}</option> 
+                    {{#each ../genreMovie as |g key|}}
+                    <option value="{{g}}">{{g}}</option>
+                    {{/each}}
+                </select required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="urlImag" >URL:
+                <input type="text" name="urlImage" id="urlImag" placeholder="url of your img" value="{{movies.urlImage}}" class="col-12" required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="description">Description:
+                <input type="text" name="description" id="description" placeholder="Synopsis" value="{{movies.description}}" class="col-12" required>
+            </label>
+        </div>
+
+        <div class="row m-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio" id="active" value="active" checked>
+                <label class="form-check-label" for="active">
+                    active
+                </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="disabled" value="disable" required>
+                    <label class="form-check-label" for="disabled">
+                        disabled
+                    </label>
+            </div>
+        </div>
+
+            <input type="text" name="id" value="{{movies.id}}">
+        <div class="m-2">
+            <input class="btn btn-info"type="submit" value="edit">
+        </div>
+    </form>
+</div>
+{{/each}}
+    
+{{else}}
+
+<div class="card mt-3">
+    <form action="/admin/addMovie" method="post">
+
+        <div class="row m-3">
+            <label for="title" class="">title: 
+                <input type="text" name="title" id="title" placeholder="Title" value="" class="col-12" required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="genre">Genre:
+                <select class="form-select" aria-label="Default select example" name="genre">
+                    <option selected>Open this select menu</option> 
+                    {{#each genreMovie as |g key|}}
+                    <option value="{{g}}">{{g}}</option>
+                    {{/each}}
+                </select required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="urlImag" >URL:
+                <input type="text" name="urlImage" id="urlImag" placeholder="url of your img" value="" class="col-12" required>
+            </label>
+        </div>
+        <div class="row m-3">
+            <label for="description">Description:
+                <input type="text" name="description" id="description" placeholder="Synopsis" value="" class="col-12" required>
+            </label>
+        </div>
+
+        <div class="row m-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio" id="active" value="active" checked>
+                <label class="form-check-label" for="active">
+                    active
+                </label>
+            </div>
+        </div>
+
+        <div class="m-2">
+            <input class="btn btn-info"type="submit" value="add">
+        </div>
+    </form>
+</div>
+    
+
+{{/if}}
+
