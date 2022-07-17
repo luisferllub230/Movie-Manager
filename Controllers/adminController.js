@@ -1,8 +1,8 @@
-const {v4: uuid} = require('uuid');
+
 
 const genreMovie = ["Action", "Comedy", "Drama", "Horror", "Documentaries", "Suspense"];
 
-const movieDataContainer = testData.readJSONFile();
+const movieDataContainer = [];
 
 //add movie to the database
 exports.GetAddMovie = (req, res, next) => {
@@ -13,23 +13,14 @@ exports.GetAddMovie = (req, res, next) => {
     });
 }
 exports.PostAddMovie = (req, res, next) => {
-    const id = Math.round(Math.random());
     const title = req.body.title;
     const genre = req.body.genre;
     const urlImage = req.body.urlImage;
     const description = req.body.description;
     const check = req.body.radio;
 
-    let movie = {
-        id:uuid(),
-        title: title,
-        genre: genre,
-        urlImage: urlImage,
-        description: description,
-        check: check,
-    }
-    movieDataContainer.push(movie);
-    testData.saveJSONFile(movieDataContainer);
+    
+    
     res.status(200).redirect("/admin/");
 }
 
@@ -40,7 +31,7 @@ exports.GetEdit = (req, res, next) => {
     id = id.replace(/:/g, "");
     edit = edit.replace(/:/g, "");
 
-    const movieData = testData.editTakeDataById(id);
+    const movieData= "";
 
     if(edit === true || edit === "true"){
         res.render("./admin/administration",{
@@ -68,8 +59,6 @@ exports.PostEditMovie = (req, res, next) => {
         description: description,
         check: check,
     }
-
-    testData.editJSONFile(id, editMovie); //bug in the redirect don't clean the page
     res.redirect("/admin/");
 }
 
@@ -85,7 +74,6 @@ exports.GetHome = (req, res, next) => {
 }
 
 //delete movie
-exports.GetDelete = (req, res, next) => { // bug in the redirect don't clean the page
-    testData.deleteJSONFile(req.params.id);
+exports.GetDelete = (req, res, next) => { 
     res.status(200).redirect("/admin/");
 }
