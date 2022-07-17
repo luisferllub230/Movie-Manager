@@ -1,4 +1,3 @@
-const testData = require("../Models/testData");
 const {v4: uuid} = require('uuid');
 
 const genreMovie = ["Action", "Comedy", "Drama", "Horror", "Documentaries", "Suspense"];
