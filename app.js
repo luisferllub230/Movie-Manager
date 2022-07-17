@@ -3,6 +3,8 @@ const path = require("path");
 const expressHbs = require("express-handlebars");
 const adminRout = require("./Routes/admin");
 const bodyParser = require("body-parser");
+const db = require("./util/db");
+const MoviesDB = require("./Models/MoviesDB");
 
 // Initialize express app
 const app = express();
@@ -33,5 +35,6 @@ app.use("/", (req, res, next) => {
 }
 );
 
-// Configure routes
-app.listen(process.env.port || 5500);
+//synchronize the database and start the server
+db.sql.sync().then(() => app.listen(process.env.port || 5500)).catch(err => console.log(err));
+

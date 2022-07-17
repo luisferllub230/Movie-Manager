@@ -1,7 +1,6 @@
 
 {{#if editMode}}
 
-{{#each movies as |movies key|}}
 <div class="card mt-3">
     <form action="/admin/editMovie" method="post">
 
@@ -14,7 +13,7 @@
             <label for="genre">Genre:
                 <select class="form-select" aria-label="Default select example" name="genre">
                     <option value="{{movies.genre}}">{{movies.genre}}</option> 
-                    {{#each ../genreMovie as |g key|}}
+                    {{#each genreMovie as |g key|}}
                     <option value="{{g}}">{{g}}</option>
                     {{/each}}
                 </select required>
@@ -52,7 +51,6 @@
         </div>
     </form>
 </div>
-{{/each}}
     
 {{else}}
 
