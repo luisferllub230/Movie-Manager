@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+img{
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
+}

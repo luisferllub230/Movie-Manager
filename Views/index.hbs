@@ -2,21 +2,36 @@
   <h1>{{message}}</h1>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   {{#each movies as |i key|}}
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 mt-2 col-md-6 col-lg-4">
 
-      <div class="card box bg-white text-dark border-dark shadow ">
-        <img src="{{i.urlImage}}" class="card-img-top" alt="{{i.description}}" />
-        <div class="card-img-overlay img-fluid">
-          <h5 class="card-title">{{i.title}}</h5>
+      <div class=" bg-white text-dark border border-dark shadow text-center">
+
+        <div class="text-center m-1">
+          <img src="{{i.urlImage}}" class="" alt="{{i.description}}" />
+        </div>
+
+        <div class="text-start m-3">
+
+          <h5 class="">{{i.title}}</h5>
+
           {{#if check}}
-            <div class="bg-success">
+            <div class="bg-success ">
               <p class="text-white text-center">Active</p>
             </div>
+
+          {{else}}
+            <div class="bg-danger ">
+              <p class="text-white text-center">Inactive</p>
+            </div>
           {{/if}}
-          <a href="/admin/{{i.id}}" class="btn btn-danger">Delete</a>
-          <a href="/admin/edit/:{{i.id}}/:true" class="btn btn-warning">edit</a>
+
+          <div class="">
+            <a href="/admin/{{i.id}}" class="btn btn-danger">Delete</a>
+            <a href="/admin/edit/:{{i.id}}/:true" class="btn btn-warning">edit</a>
+          </div>
+
         </div>
       </div>
 
