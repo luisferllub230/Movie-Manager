@@ -1,8 +1,7 @@
-const db  = require('../util/db');
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
+import sql from '../util/db.js';
 
-
-const MoviesTable = db.sql.define('movies',{
+const MoviesTable = sql.define('movies',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -10,7 +9,7 @@ const MoviesTable = db.sql.define('movies',{
     },
     title:{
         type: Sequelize.STRING,
-        allowNull: false   //not null
+        allowNull: false 
     },
     description:{
         type: Sequelize.STRING,
@@ -31,4 +30,4 @@ const MoviesTable = db.sql.define('movies',{
 });
 
 
-module.exports = MoviesTable;
+export {MoviesTable}

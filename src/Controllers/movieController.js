@@ -1,14 +1,11 @@
-const moviesDB = require("../Models/MoviesDB");
+import {MoviesTable} from "../Models/MoviesDB.js";
 
 const genreMovie = ["Action", "Comedy", "Drama", "Horror", "Documentaries", "Suspense"];
 
 //show all movies
-exports.GetHome = (req, res, next) => {
-
-    moviesDB.findAll().then(movies => {
-
+const GetHome = (req, res, next) => {
+    MoviesTable.findAll().then(movies => {
         const movieData = movies.map(movie => movie.dataValues);
-
         res.render("index",{
             title: "Home",
             message: "Welcome to the home page",
@@ -21,42 +18,38 @@ exports.GetHome = (req, res, next) => {
 
 
 //add movie to the database
-exports.GetAddMovie = (req, res, next) => {
+const GetAddMovie = (req, res, next) => {
     res.render("./admin/administration",{
         title: "Genre",
         activeAddMovie: true,
         genreMovie: genreMovie,
     });
 }
-exports.PostAddMovie = (req, res, next) => {
+const PostAddMovie = (req, res, next) => {
     const title = req.body.title;
     const genre = req.body.genre;
     const urlImage = req.body.urlImage;
     const description = req.body.description;
     const check = req.body.radio === "active" ? true : false;
 
-    moviesDB.create({
+    MoviesTable.create({
         title: title,
         genre: genre,
         urlImage: urlImage,
         description: description,
         check: check,
-    }).then(() => res.redirect("/admin/")).catch(err => console.log(err));
+    }).then(() => res.redirect("/")).catch(err => console.log(err));
 }
 
 //edit movie
-exports.GetEdit = (req, res, next) => {
-
+const GetEdit = (req, res, next) => {
     let id = req.params.id;
     let edit = req.params.edit;
-    id = id.replace(/:/g, "");
-    edit = edit.replace(/:/g, "");
     edit === "true" ? edit = true : edit = false;
 
-    moviesDB.findOne({where: {id: id}}).then(movie => {
+    MoviesTable.findOne({where: {id: id}}).then(movie => {
         const movieData = movie.dataValues;
-
-        if(!movie){res.redirect("/admin/")}
+        if(!movie){res.redirect("/")}
         else{
             res.render("./admin/administration",{
                 title: "Edit Movie",
@@ -65,10 +58,9 @@ exports.GetEdit = (req, res, next) => {
                 genreMovie: genreMovie,
             });
         }
-
     }).catch(err => console.log(err));
 }
-exports.PostEditMovie = (req, res, next) => {
+const PostEditMovie = (req, res, next) => {
     let id = req.body.id;
     let title = req.body.title;
     let genre = req.body.genre;
@@ -77,18 +69,15 @@ exports.PostEditMovie = (req, res, next) => {
     let check = req.body.radio;
     check === "active" ? check = true : check = false;
 
-    moviesDB.update({id: id, title: title, genre: genre, urlImage: urlImage, description: description, check: check}, {where: {id: id}})
-    .then(() => res.redirect("/admin/"))
+    MoviesTable.update({id: id, title: title, genre: genre, urlImage: urlImage, description: description, check: check}, {where: {id: id}})
+    .then(() => res.redirect("/"))
     .catch(err => console.log(err));
 }
 
 //delete movie
-exports.GetDelete = (req, res, next) => { 
-
+const GetDelete = (req, res, next) => { 
     let id = req.params.id;
-
-    moviesDB.destroy({where: {id: id}})
-    .then(() => res.status(200).redirect("/admin/"))
-    .catch(err => console.log(err));
-
+    MoviesTable.destroy({where: {id: id}}).then(() => res.status(200).redirect("/")).catch(err => console.log(err));
 }
+
+export {GetHome, GetAddMovie, PostAddMovie, GetEdit, PostEditMovie, GetDelete};

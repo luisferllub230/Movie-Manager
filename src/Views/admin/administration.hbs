@@ -1,8 +1,6 @@
-
 {{#if editMode}}
-
 <div class="card mt-3">
-    <form action="/admin/editMovie" method="post">
+    <form action="/editMovie" method="post">
 
         <div class="row m-3">
             <label for="title" class="">title: 
@@ -45,9 +43,10 @@
             </div>
         </div>
 
-            <input type="text" name="id" value="{{movies.id}}">
+            <input type="hidden" name="id" value="{{movies.id}}">
         <div class="m-2">
-            <input class="btn btn-info"type="submit" value="edit">
+            <input class="btn btn-success"type="submit" value="edit">
+            <a href="/" class="btn btn-danger">Cancel</a>
         </div>
     </form>
 </div>
@@ -55,7 +54,7 @@
 {{else}}
 
 <div class="card mt-3">
-    <form action="/admin/addMovie" method="post">
+    <form action="/addMovie" method="post">
 
         <div class="row m-3">
             <label for="title" class="">title: 
@@ -93,11 +92,8 @@
         </div>
 
         <div class="m-2">
-            <input class="btn btn-info"type="submit" value="add">
+            <input class="btn btn-success"type="submit" value="add">
         </div>
     </form>
 </div>
-    
-
 {{/if}}
-
