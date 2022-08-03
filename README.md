@@ -4,7 +4,6 @@
 
 ###### this is a simple movie manager, you can create, edit, and delete movies 
 
-##### test the demo [HERE](https://periodic-table-lf.herokuapp.com "HERE")
 ------------
 
 ### - Technology
