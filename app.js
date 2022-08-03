@@ -6,7 +6,7 @@ import expressHbs from 'express-handlebars';
 import bodyParser from 'body-parser';
 import movieRout from './src/Routes/routes.js';
 import sql from './src/util/db.js';
-import {MoviesTable} from './src/models/MoviesDB.js';
+import {MoviesTable} from './src/Models/MoviesDB.js';
 
 // Initialize express app
 const app = express();
