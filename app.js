@@ -1,10 +1,12 @@
-const express = require("express");
-const path = require("path");
-const expressHbs = require("express-handlebars");
-const adminRout = require("./Routes/admin");
-const bodyParser = require("body-parser");
-const db = require("./util/db");
-const MoviesDB = require("./Models/MoviesDB");
+import express from 'express';
+import path from 'path';
+import {fileURLToPath} from 'url';
+import {dirname} from 'path';
+import expressHbs from 'express-handlebars';
+import bodyParser from 'body-parser';
+import movieRout from './src/Routes/routes.js';
+import sql from './src/util/db.js';
+import {MoviesTable} from './src/models/MoviesDB.js';
 
 // Initialize express app
 const app = express();
@@ -14,7 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //make the static folder public
-app.use(express.static(path.join(__dirname, "public")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "./src/public")));
 
 // Configure handlebars
 app.engine("hbs", expressHbs({
@@ -23,18 +28,11 @@ app.engine("hbs", expressHbs({
     extname: "hbs"
 }));
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "Views"));
+app.set("views", path.join(__dirname, "./src/Views"));
 
 //call the middleware
-app.use('/admin/',adminRout);
-app.use("/", (req, res, next) => {
-    res.status(404).render("./error/404",{
-      title: "404",
-      message: "Page not found - 404",
-    });
-}
-);
+app.use(movieRout);
 
 //synchronize the database and start the server
-db.sql.sync().then(() => app.listen(process.env.port || 5500)).catch(err => console.log(err));
+sql.sync().then(() => app.listen(process.env.port || 5500)).catch(err => console.log(err));
 
